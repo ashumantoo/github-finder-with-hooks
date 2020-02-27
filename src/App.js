@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Navbar from './components/Layout/Navbar'
 import Users from './components/Users/Users';
+import Search from './components/Users/Search';
 import './App.css';
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
   //Async await type axios call
   async componentDidMount() {
     this.setState({ loading: true });
-    const res = await axios.get('https://api.github.com/users');
+    const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     this.setState({ loading: false, users: res.data });
   }
 
@@ -40,6 +41,7 @@ class App extends Component {
       <div className="App" >
         <Navbar icon="fab fa-github" title="Github-finder" />
         <div className="container">
+          <Search />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>
