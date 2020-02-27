@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class UserItem extends Component {
 
+    //We can also convert this class based component into the function based component
+    //because here we are not using any state inside the component
+
     /*============ Defining Local Component state inside the constructor ========
     constructor() {
         super()
