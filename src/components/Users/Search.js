@@ -19,7 +19,8 @@ class Search extends Component {
     }
 
     static propsTypes = {
-        searchUsers: PropsTypes.func.isRequired
+        searchUsers: PropsTypes.func.isRequired,
+        clearSearchedUsers: PropsTypes.func.isRequired
     }
 
     render() {
@@ -39,6 +40,9 @@ class Search extends Component {
                         className="btn btn-dark btn-block"
                     />
                 </form>
+                {this.props.clear && (
+                    <button className="btn btn-light btn-block" onClick={this.props.clearSearchedUsers}>Clear</button>
+                )}
             </div>
         )
     }

@@ -45,13 +45,27 @@ class App extends Component {
     this.setState({ loading: false, users: res.data.items });
   }
 
+  onClearSearchedUserHandler = () => {
+    this.setState({ users: [], loading: false });
+  }
+
   render() {
     return (
       <div className="App" >
-        <Navbar icon="fab fa-github" title="Github-finder" />
+        <Navbar
+          icon="fab fa-github"
+          title="Github-Finder"
+        />
         <div className="container">
-          <Search searchUsers={this.searchUsersHandler} />
-          <Users loading={this.state.loading} users={this.state.users} />
+          <Search
+            searchUsers={this.searchUsersHandler}
+            clearSearchedUsers={this.onClearSearchedUserHandler}
+            clear={this.state.users.length > 0 ? true : false}
+          />
+          <Users
+            loading={this.state.loading}
+            users={this.state.users}
+          />
         </div>
       </div>
     );
