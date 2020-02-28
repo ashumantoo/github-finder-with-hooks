@@ -4,13 +4,15 @@ import axios from 'axios';
 import Navbar from './components/Layout/Navbar'
 import Users from './components/Users/Users';
 import Search from './components/Users/Search';
+import Alert from './components/Layout/Alert';
 import './App.css';
 
 class App extends Component {
 
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   }
 
   //Promise Based axios calls
@@ -49,6 +51,14 @@ class App extends Component {
     this.setState({ users: [], loading: false });
   }
 
+  onAlertHandle = (msg, type) => {
+    this.setState({ alert: { msg: msg, type: type } });
+    //making disappear alert message after 3 sec by setting alert to null
+    setTimeout(() => {
+      this.setState({ alert: null });
+    }, 3000);
+  }
+
   render() {
     return (
       <div className="App" >
@@ -57,10 +67,12 @@ class App extends Component {
           title="Github-Finder"
         />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             searchUsers={this.searchUsersHandler}
             clearSearchedUsers={this.onClearSearchedUserHandler}
             clear={this.state.users.length > 0 ? true : false}
+            setAlert={this.onAlertHandle}
           />
           <Users
             loading={this.state.loading}
