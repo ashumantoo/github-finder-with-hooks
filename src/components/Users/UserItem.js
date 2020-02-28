@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class UserItem extends Component {
 
@@ -42,7 +43,7 @@ class UserItem extends Component {
             <div className="card text-center">
                 <img className="round-img" src={this.props.user.avatar_url} alt="user_logo" style={{ width: "60px" }} />
                 <h4>{this.props.user.login}</h4>
-                <a href={this.props.user.html_url} className="btn btn-dark btn-sm my-1">More</a>
+                <Link to={`/user/${this.props.user.login}`} className="btn btn-dark btn-sm my-1">More</Link>
             </div>
         )
     }

@@ -7,12 +7,14 @@ import Users from './components/Users/Users';
 import Search from './components/Users/Search';
 import Alert from './components/Layout/Alert';
 import About from './components/About/About';
+import User from './components/Users/User';
 import './App.css';
 
 class App extends Component {
 
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   }
@@ -37,7 +39,7 @@ class App extends Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
-    &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+                &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     this.setState({ loading: false, users: res.data });
   }
 
@@ -45,8 +47,15 @@ class App extends Component {
   searchUsersHandler = async (text) => {
     this.setState({ loading: true });
     const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
-    &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+                &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     this.setState({ loading: false, users: res.data.items });
+  }
+
+  getUser = async (username) => {
+    this.setState({ loading: true });
+    const res = await axios.get(`https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
+                &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    this.setState({ loading: false, user: res.data });
   }
 
   onClearSearchedUserHandler = () => {
@@ -90,6 +99,9 @@ class App extends Component {
               } />
               {/* route for one component */}
               <Route exact path="/about" component={About} />
+              <Route exact path="/user/:login" render={props => (
+                <User {...props} getUser={this.getUser} user={this.state.user} loading={this.state.loading} />
+              )} />
             </Switch>
           </div>
         </div>
