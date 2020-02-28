@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropsTypes from 'prop-types';
 
 class Search extends Component {
     state = {
-        text: ""
+        search: ""
     }
 
     onChangeHandler = (e) => {
@@ -11,7 +12,14 @@ class Search extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(this.state.text);
+        //passing searched text from search component to the app component
+        //i.e from bottom component to the top component
+        this.props.searchUsers(this.state.search);
+        this.setState({ search: '' }); //clearing the search field
+    }
+
+    static propsTypes = {
+        searchUsers: PropsTypes.func.isRequired
     }
 
     render() {
@@ -20,9 +28,9 @@ class Search extends Component {
                 <form className="form" onSubmit={this.onSubmitHandler}>
                     <input
                         type="text"
-                        name="text"
+                        name="search"
                         placeholder="Search User..."
-                        value={this.state.text}
+                        value={this.state.search}
                         onChange={this.onChangeHandler}
                     />
                     <input
