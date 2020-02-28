@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // class Navbar extends Component {
 //     //In this component we are not using any state
@@ -35,9 +36,16 @@ const Navbar = (props) => {
             <h2>
                 <i className={props.icon} /> {props.title}
             </h2>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/about">about</Link>
+                </li>
+            </ul>
         </div>
     )
-
 }
 
 //this only be considered if props are not passed from the calling component
