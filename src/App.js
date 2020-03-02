@@ -20,21 +20,6 @@ class App extends Component {
     alert: null
   }
 
-  //Promise Based axios calls
-  // componentDidMount() {
-  //   this.setState({ loading: true });
-  //   axios
-  //     .get('https://api.github.com/users')
-  //     .then(res => {
-  //       console.log(res.data);
-  //       this.setState({ users: res.data });
-  //       this.setState({ loading: false });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
   //Async await type axios call
   //Default Users
   async componentDidMount() {
