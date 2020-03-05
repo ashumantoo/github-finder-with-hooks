@@ -37,16 +37,14 @@ const Search = (props) => {
                     className="btn btn-dark btn-block"
                 />
             </form>
-            {props.clear && (
-                <button className="btn btn-light btn-block" onClick={props.clearSearchedUsers}>Clear</button>
+            {githubContext.users.length > 0 && (
+                <button className="btn btn-light btn-block" onClick={githubContext.clearSearchedUsers}>Clear</button>
             )}
         </div>
     )
 }
 
 Search.propsTypes = {
-    clearSearchedUsers: PropsTypes.func.isRequired,
-    clear: PropsTypes.bool.isRequired,
     setAlert: PropsTypes.func.isRequired
 }
 

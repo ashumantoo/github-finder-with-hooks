@@ -35,26 +35,12 @@ const App = () => {
       })
   }, []);
 
-  //get single user
-  const getUser = async (username) => {
-    setLoading(true);
-    const res = await axios.get(`https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
-                &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    setUser(res.data);
-    setLoading(false);
-  }
-
   //get single user repos
   const getUserRepos = async (username) => {
     setLoading(true);
     const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=
                 ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     setRepos(res.data);
-    setLoading(false);
-  }
-
-  const onClearSearchedUserHandler = () => {
-    setUsers([]);
     setLoading(false);
   }
 
@@ -80,15 +66,8 @@ const App = () => {
               {/* if more than one component is there then use route like this */}
               <Route exact path="/" render={(props) => (
                 <Fragment>
-                  <Search
-                    clearSearchedUsers={onClearSearchedUserHandler}
-                    clear={users.length > 0 ? true : false}
-                    setAlert={onAlertHandle}
-                  />
-                  <Users
-                    loading={loading}
-                    users={users}
-                  />
+                  <Search setAlert={onAlertHandle} />
+                  <Users />
                 </Fragment>
               )
               } />
@@ -97,9 +76,7 @@ const App = () => {
               <Route exact path="/user/:login" render={props => (
                 <User
                   {...props}
-                  getUser={getUser}
                   getUserRepos={getUserRepos}
-                  user={user}
                   repos={repos}
                   loading={loading}
                 />
