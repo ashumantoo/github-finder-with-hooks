@@ -6,6 +6,7 @@ import Alert from './components/Layout/Alert';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import User from './components/Users/User';
+import { Contact } from './components/Contact/Contact';
 import NotFound from './components/Pages/NotFound';
 import './App.css';
 
@@ -27,6 +28,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />
+                <Route exact path="/contactme" component={Contact} />
                 <Route exact path="/user/:login" component={User} />
                 <Route component={NotFound} />
                 )} />
