@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import GithubContext from '../../context/github/githubContext';
 import AlertContext from '../../context/alert/alertContext';
+import {useGAEventsTracker} from '../Hooks/useGAEventsTracker';
 
 const Search = (props) => {
     const githubContext = useContext(GithubContext);
     const alertContext = useContext(AlertContext);
+    const GAEventTracker = useGAEventsTracker('Github-Search');
 
     const [search, setSearch] = useState('');
 
@@ -18,6 +20,7 @@ const Search = (props) => {
             alertContext.setAlert('Please enter something', 'light');
         } else {
             githubContext.searchUsers(search);
+            GAEventTracker('search','github user repo search');
             setSearch(''); //clearing the search field
         }
     }
