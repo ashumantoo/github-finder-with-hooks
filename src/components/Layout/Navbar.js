@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
+const GATrakingId;
+if (process.env.NODE_ENV !== 'production') {
+  GATrakingId = process.env.REACT_APP_GA_TRACKING_CODE;
+} else {
+  GATrakingId = process.env.GA_TRACKING_CODE;
+}
 
-ReactGA.initialize(process.env.NODE_ENV ? process.env.REACT_APP_GA_TRACKING_CODE : process.env.GA_TRACKING_CODE);
+
+// ReactGA.initialize(process.env.NODE_ENV ? process.env.REACT_APP_GA_TRACKING_CODE : process.env.GA_TRACKING_CODE);
+ReactGA.initialize(GATrakingId);
 
 // class Navbar extends Component {
 //     //In this component we are not using any state

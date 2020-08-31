@@ -5,7 +5,9 @@ export const Contact = () => {
     <>
       <div>
         <h3>Contact Me on:</h3>
+        <h4>Ashutosh Kumar Mantoo</h4>
         <h4>Email - ashumantoo@gmail.com</h4>
+        <h4>City - Bangalore(India)</h4>
       </div>
 
       <div>
