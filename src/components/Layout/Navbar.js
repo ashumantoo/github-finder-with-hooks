@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
-const GATrakingId;
+let GATrakingId;
 if (process.env.NODE_ENV !== 'production') {
   GATrakingId = process.env.REACT_APP_GA_TRACKING_CODE;
 } else {
