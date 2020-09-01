@@ -12,7 +12,11 @@ import { useEffect } from 'react';
 
 
 // ReactGA.initialize(process.env.NODE_ENV ? process.env.REACT_APP_GA_TRACKING_CODE : process.env.GA_TRACKING_CODE);
-ReactGA.initialize("UA-176812691-1");
+ReactGA.initialize("UA-176812691-1",{
+  gaOptions:{
+    userId:"ashumantoo"
+  }
+});
 
 // class Navbar extends Component {
 //     //In this component we are not using any state
